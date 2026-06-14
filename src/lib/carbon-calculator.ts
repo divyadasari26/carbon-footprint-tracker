@@ -130,9 +130,15 @@ export function getBestDay(
   dailyData: DailyDataPoint[]
 ): { date: string; amount: number } | null {
   if (dailyData.length === 0) return null;
-  return dailyData.reduce((best, day) =>
+
+  const best = dailyData.reduce((best, day) =>
     day.co2 < best.co2 ? day : best
-  , { date: dailyData[0].date, amount: dailyData[0].co2, co2: dailyData[0].co2 }) as unknown as { date: string; amount: number };
+  );
+
+  return {
+    date: best.date,
+    amount: best.co2,
+  };
 }
 
 /**

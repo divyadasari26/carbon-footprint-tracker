@@ -10,8 +10,8 @@ import type { SpeechRecognitionState } from "@/types";
 
 // Extend Window for vendor-prefixed API
 interface WindowWithSpeech extends Window {
-  SpeechRecognition: typeof SpeechRecognition;
-  webkitSpeechRecognition: typeof SpeechRecognition;
+  SpeechRecognition: any;
+  webkitSpeechRecognition: any;
 }
 
 export function useSpeechRecognition(): SpeechRecognitionState & {
@@ -27,7 +27,7 @@ export function useSpeechRecognition(): SpeechRecognitionState & {
     isSupported: false,
   });
 
-  const recognitionRef = useRef<SpeechRecognition | null>(null);
+  const recognitionRef = useRef<WindowWithSpeech["SpeechRecognition"] | null>(null);
 
   // Check browser support
   useEffect(() => {
@@ -45,7 +45,7 @@ export function useSpeechRecognition(): SpeechRecognitionState & {
       recognition.interimResults = true;
       recognition.lang = "en-US";
 
-      recognition.onresult = (event: SpeechRecognitionEvent) => {
+      recognition.onresult = (event: any) => {
         let interim = "";
         let final = "";
 
@@ -65,7 +65,7 @@ export function useSpeechRecognition(): SpeechRecognitionState & {
         }));
       };
 
-      recognition.onerror = (event: SpeechRecognitionErrorEvent) => {
+      recognition.onerror = (event: any) => {
         setState((prev) => ({
           ...prev,
           error: event.error,
