@@ -19,4 +19,5 @@ vi.mock("canvas-confetti", () => ({
   default: vi.fn(),
 }));
 
-HTMLCanvasElement.prototype.getContext = vi.fn();
+HTMLCanvasElement.prototype.getContext =
+  vi.fn() as unknown as typeof HTMLCanvasElement.prototype.getContext;
