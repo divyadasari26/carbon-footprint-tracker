@@ -227,14 +227,19 @@ export function ActivityLogger() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {/* Category */}
           <div className="space-y-1">
-            <label className="text-xs font-bold text-charcoal-500 dark:text-carbon-muted">
-              Category
-            </label>
-            <select
-              value={category}
-              onChange={(e) => setCategory(e.target.value as ActivityCategory)}
-              className="input-field"
-            >
+            <label
+  htmlFor="category"
+  className="text-xs font-bold text-charcoal-500 dark:text-carbon-muted"
+>
+  Category
+</label>
+
+<select
+  id="category"
+  value={category}
+  onChange={(e) => setCategory(e.target.value as ActivityCategory)}
+  className="input-field"
+>
               <option value="transport">🚗 Transport</option>
               <option value="energy">⚡ Energy</option>
               <option value="food">🍲 Food</option>
@@ -246,14 +251,19 @@ export function ActivityLogger() {
 
           {/* Subcategory */}
           <div className="space-y-1">
-            <label className="text-xs font-bold text-charcoal-500 dark:text-carbon-muted">
-              Source Detail
-            </label>
-            <select
-              value={subcategory}
-              onChange={(e) => setSubcategory(e.target.value)}
-              className="input-field"
-            >
+            <label
+  htmlFor="detail"
+  className="text-xs font-bold text-charcoal-500 dark:text-carbon-muted"
+>
+  Source Detail
+</label>
+
+<select
+  id="detail"
+  value={subcategory}
+  onChange={(e) => setSubcategory(e.target.value)}
+  className="input-field"
+>
               {activeSubcategories.map((ef) => (
                 <option key={ef.subcategory} value={ef.subcategory}>
                   {ef.label}
@@ -266,33 +276,45 @@ export function ActivityLogger() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-end">
           {/* Amount */}
           <div className="space-y-1 md:col-span-1">
-            <label className="text-xs font-bold text-charcoal-500 dark:text-carbon-muted flex justify-between">
-              <span>Amount</span>
-              <span className="font-semibold text-leaf-500">Unit: {currentUnit}</span>
-            </label>
-            <input
-              type="number"
-              step="any"
-              min="0"
-              value={amount || ""}
-              onChange={(e) => setAmount(parseFloat(e.target.value) || 0)}
-              placeholder="0.0"
-              className="input-field"
-            />
+            <label
+  htmlFor="amount"
+  className="text-xs font-bold text-charcoal-500 dark:text-carbon-muted flex justify-between"
+>
+  <span>Amount</span>
+  <span className="font-semibold text-leaf-500">
+    Unit: {currentUnit}
+  </span>
+</label>
+
+<input
+  id="amount"
+  type="number"
+  step="any"
+  min="0"
+  value={amount}
+  onChange={(e) => setAmount(parseFloat(e.target.value) || 0)}
+  placeholder="0.0"
+  className="input-field"
+/>
           </div>
 
           {/* Description */}
           <div className="space-y-1 md:col-span-2">
-            <label className="text-xs font-bold text-charcoal-500 dark:text-carbon-muted">
-              Description
-            </label>
-            <input
-              type="text"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              placeholder='e.g., "Commuted to workplace via train"'
-              className="input-field"
-            />
+            <label
+  htmlFor="description"
+  className="text-xs font-bold text-charcoal-500 dark:text-carbon-muted"
+>
+  Description
+</label>
+
+<input
+  id="description"
+  type="text"
+  value={description}
+  onChange={(e) => setDescription(e.target.value)}
+  placeholder='e.g., "Commuted to workplace via train"'
+  className="input-field"
+/>
           </div>
         </div>
 
